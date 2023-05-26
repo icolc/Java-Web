@@ -1,0 +1,38 @@
+#springboot相关配置
+spring:
+  #数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url
+    url: jdbc:mysql://localhost:3306/tlias
+    #用户名
+    username: root
+    #密码
+    password: 1234
+  #上传配置
+  servlet:
+    #配置单个文件上传大小
+    multipart.max-file-size: 50MB
+    #配置单次上传最大
+    multipart.max-request-size: 100MB
+
+#Mybatis相关配置
+mybatis:
+  #日志输出到控制台
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #开启驼峰自动映射
+  configuration:
+    map-underscore-to-camel-case: true
+
+#配置工具类AiliOSS配
+aliyun:
+  oss:
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI5tEKnMymfFc3UTdm5cE8
+    accessKeySecret: icdHd5uGFn2BUmIJLYqxOa1m27oXdE
+    bucketName: xruiniu
+
+#spring事物日志
+logging:
+  level:
+    org.springframework.JdbcTransactionManager: debug

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xrui.mapper.StuMapper">
+    <select id="select" resultType="com.xrui.pojo.Student">
+        select *
+        from tb_stu
+        where username = #{username}
+    </select>
+
+    <insert id="insert">
+        insert into tb_stu values (#{username},#{age},#{gender},#{password})
+    </insert>
+
+    <delete id="deleteStuByName">
+        delete
+        from tb_stu
+        where username = #{username};
+    </delete>
+
+    <update id="updateByName">
+
+    </update>
+</mapper>

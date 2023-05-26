@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xrui.mapper.EmpMapper">
+    <select id="select" resultType="com.xrui.pojo.Emp">
+        select *
+        from emp
+        where id = #{id};
+    </select>
+
+
+    <select id="listEmp" resultType="com.xrui.pojo.Emp">
+        select *
+        from emp
+        where
+        <if test="name != null">
+            name like concat('%',#{name},'%')
+        </if>
+        <if test="gender != null">
+            and gender = #{gender}
+        </if>
+        <if test="begin != null  and end != null">
+            and entrydate between #{begin}and #{end}
+        </if>
+        order by update_time desc;
+    </select>
+
+
+    <update id="update">
+        update emp
+        set username=#{username},
+            name=#{name},
+            gender=#{gender},
+            image=#{image},
+            job = #{job},
+            entrydate=#{entrydate},
+            dept_id=#{deptId},
+            update_time=#{updateTime}
+        where id = #{id}
+    </update>
+
+    <insert id="insert">
+        insert into emp ( username, password, name, gender, image, job, entrydate, dept_id, create_time, update_time)
+        VALUES (#{username}, #{password}, #{name},#{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})
+    </insert>
+
+    <delete id="delete">
+        delete
+        from emp
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteA">
+        delete from mybatis.emp where id in
+        <foreach collection="ids" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
